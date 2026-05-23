@@ -7,6 +7,12 @@ venue: "Virginia Tech, School of Plant and Environmental Sciences"
 date: 2026-01-01
 location: "Blacksburg, VA, United States"
 ---
+<style>
+.page__title {
+  color: #0077b6;
+  font-family: Georgia, serif;
+}
+</style>
 
 Water Quality is an undergraduate course taught at Virginia Tech in Spring 2026. The course introduces students to fundamental concepts in water quality, including physical, chemical, and biological indicators; water-quality standards; pollutant sources and fate; and practical approaches for monitoring and interpreting water-quality data.
 
