@@ -1,0 +1,48 @@
+---
+title: "Lab Facilities"
+permalink: /facilities/
+author_profile: true
+layout: archive
+---
+{% comment %}
+  This page renders automatically from _data/facilities.yml.
+  To add or change equipment, edit _data/facilities.yml — not this file.
+{% endcomment %}
+
+<style>
+  .facility {
+    display: flex; gap: 1.5em; align-items: flex-start;
+    flex-wrap: wrap; margin: 0 0 2em 0;
+    padding-bottom: 1.5em; border-bottom: 1px solid #eee;
+  }
+  .facility img {
+    width: 320px; max-width: 100%; height: auto;
+    border-radius: 8px; object-fit: cover; background: #eee;
+  }
+  .facility .f-info { flex: 1; min-width: 260px; }
+  .facility h2 { margin-top: 0; }
+  .facility .f-loc { color: #777; font-size: 0.9em; }
+  .facility ul { margin-top: 0.5em; }
+</style>
+
+{% if site.data.facilities.facilities and site.data.facilities.facilities.size > 0 %}
+  {% for f in site.data.facilities.facilities %}
+  <div class="facility">
+    {% if f.photo %}
+      <img src="{{ '/images/facilities/' | append: f.photo | relative_url }}" alt="{{ f.name }}">
+    {% endif %}
+    <div class="f-info">
+      <h2>{{ f.name }}</h2>
+      {% if f.location %}<p class="f-loc">📍 {{ f.location }}</p>{% endif %}
+      {% if f.description %}<p>{{ f.description }}</p>{% endif %}
+      {% if f.specs %}
+      <ul>
+        {% for s in f.specs %}<li>{{ s }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+{% else %}
+  <p>Facilities will be listed here soon.</p>
+{% endif %}

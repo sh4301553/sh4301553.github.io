@@ -1,0 +1,38 @@
+---
+title: "News"
+permalink: /news/
+author_profile: true
+layout: archive
+---
+{% comment %}
+  This page renders automatically from _data/news.yml.
+  To post news, edit _data/news.yml — not this file.
+{% endcomment %}
+
+<style>
+  .news-list { list-style: none; padding-left: 0; }
+  .news-list li {
+    display: flex; gap: 1em; padding: 0.7em 0;
+    border-bottom: 1px solid #eee; align-items: baseline;
+  }
+  .news-list .n-date {
+    flex: 0 0 110px; color: #777; font-size: 0.85em; font-variant-numeric: tabular-nums;
+  }
+  .news-list .n-text { flex: 1; }
+</style>
+
+{% if site.data.news.items and site.data.news.items.size > 0 %}
+<ul class="news-list">
+  {% for item in site.data.news.items %}
+  <li>
+    <span class="n-date">{{ item.date | date: "%b %-d, %Y" }}</span>
+    <span class="n-text">
+      {{ item.text }}
+      {% if item.link %}<a href="{{ item.link }}">{{ item.link_text | default: "More" }}</a>{% endif %}
+    </span>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No news yet — check back soon.</p>
+{% endif %}

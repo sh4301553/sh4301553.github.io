@@ -1,0 +1,78 @@
+---
+title: "Gallery"
+permalink: /gallery/
+author_profile: true
+layout: archive
+---
+{% comment %}
+  This page renders automatically from _data/gallery.yml.
+  To add photos, edit _data/gallery.yml — not this file.
+{% endcomment %}
+
+<style>
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75em;
+    margin: 1em 0;
+  }
+  .gallery-item { cursor: pointer; position: relative; }
+  .gallery-item img {
+    width: 100%; height: 200px; object-fit: cover;
+    border-radius: 6px; display: block; background: #eee;
+    transition: transform 0.15s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.02); }
+  .gallery-item .cap {
+    font-size: 0.8em; color: #666; margin-top: 0.3em;
+    text-align: center;
+  }
+  /* Lightbox */
+  #lb-overlay {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.88); align-items: center; justify-content: center;
+    flex-direction: column; padding: 2em; cursor: zoom-out;
+  }
+  #lb-overlay.open { display: flex; }
+  #lb-overlay img { max-width: 92vw; max-height: 82vh; border-radius: 6px; }
+  #lb-caption { color: #eee; margin-top: 0.8em; font-size: 0.95em; text-align: center; }
+  #lb-close { position: absolute; top: 16px; right: 24px; color: #fff; font-size: 2em; line-height: 1; }
+</style>
+
+{% if site.data.gallery.photos and site.data.gallery.photos.size > 0 %}
+<div class="gallery-grid">
+  {% for p in site.data.gallery.photos %}
+  {% assign src = '/images/gallery/' | append: p.image | relative_url %}
+  <figure class="gallery-item" data-full="{{ src }}" data-cap="{{ p.caption | escape }}">
+    <img src="{{ src }}" alt="{{ p.caption | default: 'Group photo' }}" loading="lazy">
+    {% if p.caption %}<figcaption class="cap">{{ p.caption }}{% if p.date %} · {{ p.date }}{% endif %}</figcaption>{% endif %}
+  </figure>
+  {% endfor %}
+</div>
+
+<div id="lb-overlay" role="dialog" aria-modal="true">
+  <span id="lb-close" aria-label="Close">&times;</span>
+  <img id="lb-img" src="" alt="">
+  <div id="lb-caption"></div>
+</div>
+
+<script>
+(function () {
+  var overlay = document.getElementById('lb-overlay');
+  var lbImg = document.getElementById('lb-img');
+  var lbCap = document.getElementById('lb-caption');
+  document.querySelectorAll('.gallery-item').forEach(function (el) {
+    el.addEventListener('click', function () {
+      lbImg.src = el.getAttribute('data-full');
+      lbCap.textContent = el.getAttribute('data-cap') || '';
+      overlay.classList.add('open');
+    });
+  });
+  function close() { overlay.classList.remove('open'); lbImg.src = ''; }
+  overlay.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();
+</script>
+{% else %}
+<p>Photos will be added here soon.</p>
+{% endif %}
