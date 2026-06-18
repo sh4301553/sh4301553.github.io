@@ -1,0 +1,41 @@
+# =============================================================================
+# LAB FACILITIES
+# =============================================================================
+# Edit this file to list the equipment, instruments, and facilities in the lab.
+# This is the ONLY file you need to touch for the "Lab Facilities" page.
+#
+# HOW IT WORKS
+#   - Each item is one "- name:" block.
+#   - Keep the 4-space indentation under each item (spaces, not tabs).
+#   - Delete any optional field you don't need.
+#
+# PHOTOS
+#   - Put photos in:  images/facilities/
+#   - Use the file name only here, e.g.  photo: "glovebox.jpg"
+#   - Recommended: landscape photo, ~1000 px wide.
+#   - Photo is optional — items without one still display.
+# =============================================================================
+
+facilities:
+  - name: "Argon Glovebox"
+    photo: "glovebox.jpg"             # file lives in images/facilities/
+    description: >
+      Short description of what this facility is used for in the group's research.
+    specs:                            # optional bullet list — delete if not needed
+      - "O2 / H2O < 0.1 ppm"
+      - "Integrated electrochemical workstation"
+    location: "Room 123, Building Name"   # optional
+
+  - name: "Example Characterization Instrument"
+    photo: "instrument.jpg"
+    description: >
+      Describe the instrument and the kinds of measurements it enables.
+    specs:
+      - "Spec line one"
+      - "Spec line two"
+    location: "Shared Facility, Floor 2"
+
+  - name: "Facility Without a Photo"
+    description: >
+      You can add an item with no photo — just leave out the "photo:" line.
+    location: "Room 456"

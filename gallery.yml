@@ -1,0 +1,34 @@
+# =============================================================================
+# GROUP GALLERY
+# =============================================================================
+# Edit this file to add photos to the "Gallery" page.
+# This is the ONLY file you need to touch for the gallery.
+#
+# HOW IT WORKS
+#   - Each photo is one "- image:" block.
+#   - Photos appear newest-first if you add new ones at the TOP of the list.
+#     (They actually display in the exact order written here, so put recent
+#      photos first if you want them first.)
+#
+# PHOTOS
+#   - Put image files in:  images/gallery/
+#   - Use the file name only here, e.g.  image: "retreat-2025.jpg"
+#   - Any size works; the page scales them into a tidy grid.
+#   - "caption" and "date" are optional.
+# =============================================================================
+
+photos:
+  - image: "photo-1.jpg"              # file lives in images/gallery/
+    caption: "Group retreat, Spring 2026"
+    date: "2026-04"                   # optional, format YYYY-MM
+
+  - image: "photo-2.jpg"
+    caption: "Welcoming new members"
+    date: "2026-01"
+
+  - image: "photo-3.jpg"
+    caption: "Conference dinner"
+    date: "2025-11"
+
+  - image: "photo-4.jpg"
+    caption: "Lab cleanup day"

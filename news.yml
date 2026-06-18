@@ -1,0 +1,36 @@
+# =============================================================================
+# NEWS  (a.k.a. "Other News" / Group Updates)
+# =============================================================================
+# Short, dated announcements: new papers, awards, members joining/leaving,
+# talks, grants, etc.
+#
+# HOW IT WORKS
+#   - Each item is one "- date:" block.
+#   - ALWAYS add the newest item at the TOP so news appears newest-first.
+#   - "link" and "link_text" are optional (use them to point to a paper,
+#      news article, tweet, etc.).
+#
+# DATE FORMAT
+#   - Use YYYY-MM-DD, e.g. 2026-06-18
+#
+# WHERE IT SHOWS
+#   - The full list appears on the "News" page.
+#   - The most recent few also appear on the homepage (see About page).
+# =============================================================================
+
+items:
+  - date: "2026-06-18"
+    text: "Our new paper on [topic] has been accepted in [Journal]."
+    link: "/publications/"            # optional
+    link_text: "Read more"            # optional
+
+  - date: "2026-05-02"
+    text: "Welcome to [Name], who joins the group as a PhD student."
+
+  - date: "2026-03-15"
+    text: "Shilai gave an invited talk at [Conference/Institution]."
+    link: "https://example.com"
+    link_text: "Details"
+
+  - date: "2026-02-01"
+    text: "The group received funding from [Agency] for [project]."

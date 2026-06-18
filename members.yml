@@ -1,0 +1,73 @@
+# =============================================================================
+# GROUP MEMBERS
+# =============================================================================
+# Edit this file to add, remove, or update people in the group.
+# This is the ONLY file you need to touch for the "Group Members" page.
+#
+# HOW IT WORKS
+#   - Each person is one "- name:" block.
+#   - Lines below a person (indented by 4 spaces) are that person's details.
+#   - Keep the indentation EXACTLY as shown (spaces, not tabs).
+#   - Any line you don't need, you can delete. Optional fields are marked.
+#
+# PHOTOS
+#   - Put photos in:  images/members/
+#   - Use the file name only here, e.g.  photo: "filename.jpg"
+#   - Recommended: square photo, ~500x500 px, .jpg or .png
+#   - If you leave the photo blank, a neutral placeholder is shown.
+#
+# ORDER
+#   - People appear top-to-bottom in the order listed here.
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# PRINCIPAL INVESTIGATOR  (usually just one person — the group leader)
+# -----------------------------------------------------------------------------
+pi:
+  - name: "Shilai Hao"
+    role: "Principal Investigator"
+    photo: "shilai-hao.jpg"           # file lives in images/members/
+    email: "your-email@institution.edu"
+    bio: >
+      One or two sentences about the PI and the group's research focus.
+      You can write as much as you like here.
+    links:                            # optional — delete any you don't use
+      - label: "Google Scholar"
+        url: "https://scholar.google.com/citations?user=XXXX"
+      - label: "CV"
+        url: "/cv/"
+
+
+# -----------------------------------------------------------------------------
+# CURRENT MEMBERS  (postdocs, PhD students, MS students, undergrads, staff)
+# -----------------------------------------------------------------------------
+# Copy a whole "- name:" block to add a new person.
+current:
+  - name: "Member Full Name"
+    role: "PhD Student"               # e.g. Postdoc / PhD Student / MS Student / Undergraduate / Research Staff
+    photo: "placeholder.jpg"
+    interests: "Short line on research interests (optional)."
+    email: "member@institution.edu"   # optional
+    links:                            # optional
+      - label: "Website"
+        url: "https://example.com"
+
+  - name: "Another Member"
+    role: "Postdoctoral Researcher"
+    photo: "placeholder.jpg"
+    interests: "Battery materials, in-situ characterization."
+    email: "another@institution.edu"
+
+
+# -----------------------------------------------------------------------------
+# ALUMNI  (former members — shown as a simple list)
+# -----------------------------------------------------------------------------
+alumni:
+  - name: "Former Member Name"
+    role: "PhD, graduated 2024"
+    current_position: "Now: Research Scientist, Company/University"   # optional
+
+  - name: "Another Alum"
+    role: "MS, graduated 2023"
+    current_position: "Now: PhD Student, Another University"
