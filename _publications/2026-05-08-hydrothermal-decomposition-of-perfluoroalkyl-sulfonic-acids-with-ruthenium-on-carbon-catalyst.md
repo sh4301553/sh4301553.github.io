@@ -1,4 +1,5 @@
 ---
+tocfigure: 'Hydrothermal Decomposition of Perfluoroalkyl Sulfonic Acids with Ruthenium on Carbon Catalyst.png'
 title: "Hydrothermal Decomposition of Perfluoroalkyl Sulfonic Acids with Ruthenium on Carbon Catalyst"
 collection: publications
 category: manuscripts
