@@ -6,16 +6,19 @@ layout: archive
 ---
 {% comment %}
   HOW TO EDIT THIS PAGE
-  - Each person is one <div class="member"> ... </div> block.
-  - To add a real headshot: upload it to images/members/ , then change
-        src="{{ placeholder }}"
-    to  src="/images/members/their-photo.jpg"
-  - To add a person: copy a whole member block, paste it, edit the words.
-  - To add undergrads: copy member blocks under the "Undergraduate Researchers"
-    heading below.
+  - People with a card (Lab Manager, Graduate Students) are a <div class="member"> block:
+        photo on the left, name/role/intro on the right.
+  - Research Assistants are a 3-per-row grid of <div class="ra-card"> blocks.
+  - To add a real headshot: upload it to images/members/ , then change that
+    person's   src="{{ placeholder }}"   (or   src="{{ cat1 }}"   for an RA)
+    to         src="/images/members/their-photo.jpg"
+  - To add a person: copy a whole block, paste it, edit the words.
+  - The cat pictures are temporary placeholders for Research Assistants.
 {% endcomment %}
 
 <style>
+  h2 { margin-top: 1.5em; }
+  /* Card layout: photo left, info right */
   .member {
     display: flex; gap: 1.3em; align-items: flex-start;
     padding: 1.1em 0; border-bottom: 1px solid #f0f0f0;
@@ -28,32 +31,52 @@ layout: archive
   .member .m-name { font-weight: 700; font-size: 1.12em; line-height: 1.2; }
   .member .m-role { color: #777; font-size: 0.9em; margin: 0.1em 0 0.5em; }
   .member .m-bio { font-size: 0.95em; margin: 0; }
-  .member .m-links { margin-top: 0.4em; font-size: 0.85em; }
-  .member .m-links a { margin-right: 0.8em; }
-  .group-section { margin-top: 1.6em; }
-  .group-note { color: #777; font-style: italic; }
+  /* Research assistant grid: three per row */
+  .ra-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.1em; margin-top: 0.7em;
+  }
+  .ra-card { text-align: center; }
+  .ra-card .ra-photo {
+    width: 100%; max-width: 150px; aspect-ratio: 1 / 1;
+    object-fit: cover; border-radius: 8px; background: #eee;
+    display: block; margin: 0 auto 0.45em;
+  }
+  .ra-card .ra-name { font-size: 0.92em; }
+  /* Undergrad list */
   .undergrad-list { margin: 0.4em 0 0; }
   .undergrad-list li { margin-bottom: 0.35em; }
   @media (max-width: 520px) {
     .member { flex-direction: column; }
     .member .m-photo { width: 130px; height: 130px; flex-basis: auto; }
+    .ra-grid { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 
-{% comment %} A built-in gray silhouette used until a real headshot is added. {% endcomment %}
+{% comment %} Gray silhouette placeholder (for cards without a photo yet). {% endcomment %}
 {% capture placeholder %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Crect width='140' height='140' rx='8' fill='%23e6e6e9'/%3E%3Ccircle cx='70' cy='54' r='27' fill='%23bfbfc6'/%3E%3Cpath d='M28 128 a42 42 0 0 1 84 0 Z' fill='%23bfbfc6'/%3E%3C/svg%3E{% endcapture %}
 
-<!-- ===================== POSTDOC / RESEARCHERS ===================== -->
+{% comment %} Six different cat placeholders for the Research Assistants. {% endcomment %}
+{% capture cat1 %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'%3E%3Crect width='140' height='140' rx='8' fill='%23fff3e3'/%3E%3Cpath d='M36 56 L46 22 L63 47 Z' fill='%23f0a85a'/%3E%3Cpath d='M104 56 L94 22 L77 47 Z' fill='%23f0a85a'/%3E%3Ccircle cx='70' cy='80' r='36' fill='%23f0a85a'/%3E%3Ccircle cx='58' cy='75' r='4.5' fill='%23333'/%3E%3Ccircle cx='82' cy='75' r='4.5' fill='%23333'/%3E%3Cpath d='M66 86 L74 86 L70 92 Z' fill='%23e58aa0'/%3E%3Cpath d='M52 84 L40 80 M52 90 L40 90 M88 84 L100 80 M88 90 L100 90' stroke='%23999' stroke-width='1.2'/%3E%3C/svg%3E{% endcapture %}
+{% capture cat2 %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'%3E%3Crect width='140' height='140' rx='8' fill='%23eef0f3'/%3E%3Cpath d='M36 56 L46 22 L63 47 Z' fill='%23b8b8c0'/%3E%3Cpath d='M104 56 L94 22 L77 47 Z' fill='%23b8b8c0'/%3E%3Ccircle cx='70' cy='80' r='36' fill='%23b8b8c0'/%3E%3Ccircle cx='58' cy='75' r='4.5' fill='%23333'/%3E%3Ccircle cx='82' cy='75' r='4.5' fill='%23333'/%3E%3Cpath d='M66 86 L74 86 L70 92 Z' fill='%23e58aa0'/%3E%3Cpath d='M52 84 L40 80 M52 90 L40 90 M88 84 L100 80 M88 90 L100 90' stroke='%23999' stroke-width='1.2'/%3E%3C/svg%3E{% endcapture %}
+{% capture cat3 %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'%3E%3Crect width='140' height='140' rx='8' fill='%23ececf0'/%3E%3Cpath d='M36 56 L46 22 L63 47 Z' fill='%235a5a64'/%3E%3Cpath d='M104 56 L94 22 L77 47 Z' fill='%235a5a64'/%3E%3Ccircle cx='70' cy='80' r='36' fill='%235a5a64'/%3E%3Ccircle cx='58' cy='75' r='4.5' fill='%23fff'/%3E%3Ccircle cx='82' cy='75' r='4.5' fill='%23fff'/%3E%3Cpath d='M66 86 L74 86 L70 92 Z' fill='%23e58aa0'/%3E%3Cpath d='M52 84 L40 80 M52 90 L40 90 M88 84 L100 80 M88 90 L100 90' stroke='%23aaa' stroke-width='1.2'/%3E%3C/svg%3E{% endcapture %}
+{% capture cat4 %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'%3E%3Crect width='140' height='140' rx='8' fill='%23fbf6ea'/%3E%3Cpath d='M36 56 L46 22 L63 47 Z' fill='%23e8d9b0'/%3E%3Cpath d='M104 56 L94 22 L77 47 Z' fill='%23e8d9b0'/%3E%3Ccircle cx='70' cy='80' r='36' fill='%23e8d9b0'/%3E%3Ccircle cx='58' cy='75' r='4.5' fill='%23333'/%3E%3Ccircle cx='82' cy='75' r='4.5' fill='%23333'/%3E%3Cpath d='M66 86 L74 86 L70 92 Z' fill='%23e58aa0'/%3E%3Cpath d='M52 84 L40 80 M52 90 L40 90 M88 84 L100 80 M88 90 L100 90' stroke='%23bbb' stroke-width='1.2'/%3E%3C/svg%3E{% endcapture %}
+{% capture cat5 %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'%3E%3Crect width='140' height='140' rx='8' fill='%23f6ebe2'/%3E%3Cpath d='M36 56 L46 22 L63 47 Z' fill='%23c8855a'/%3E%3Cpath d='M104 56 L94 22 L77 47 Z' fill='%23c8855a'/%3E%3Ccircle cx='70' cy='80' r='36' fill='%23c8855a'/%3E%3Ccircle cx='58' cy='75' r='4.5' fill='%23333'/%3E%3Ccircle cx='82' cy='75' r='4.5' fill='%23333'/%3E%3Cpath d='M66 86 L74 86 L70 92 Z' fill='%23e58aa0'/%3E%3Cpath d='M52 84 L40 80 M52 90 L40 90 M88 84 L100 80 M88 90 L100 90' stroke='%23999' stroke-width='1.2'/%3E%3C/svg%3E{% endcapture %}
+{% capture cat6 %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 140'%3E%3Crect width='140' height='140' rx='8' fill='%23f1ebf1'/%3E%3Cpath d='M36 56 L46 22 L63 47 Z' fill='%238a6a8a'/%3E%3Cpath d='M104 56 L94 22 L77 47 Z' fill='%238a6a8a'/%3E%3Ccircle cx='70' cy='80' r='36' fill='%238a6a8a'/%3E%3Ccircle cx='58' cy='75' r='4.5' fill='%23fff'/%3E%3Ccircle cx='82' cy='75' r='4.5' fill='%23fff'/%3E%3Cpath d='M66 86 L74 86 L70 92 Z' fill='%23e58aa0'/%3E%3Cpath d='M52 84 L40 80 M52 90 L40 90 M88 84 L100 80 M88 90 L100 90' stroke='%23bbb' stroke-width='1.2'/%3E%3C/svg%3E{% endcapture %}
+
+<!-- ===================== LAB MANAGER ===================== -->
+<h2>Lab Manager</h2>
 <div class="member">
-  <img class="m-photo" src="/images/members/Aihua Wang.jpg" alt="Aihua Wang">
+  <img class="m-photo" src="{{ placeholder }}" alt="Aihua Wang">
   <div class="m-info">
     <div class="m-name">Dr. Aihua Wang</div>
-    <div class="m-role">Postdoctoral Researcher</div>
-    <p class="m-bio">Brief introduction goes here — research focus and background. (Edit this line.)</p>
+    <div class="m-role">Lab Manager</div>
+    <p class="m-bio">Brief introduction goes here — role in the lab and background. (Edit this line.)</p>
   </div>
 </div>
 
 <!-- ===================== GRADUATE STUDENTS ===================== -->
+<h2>Graduate Students</h2>
 <div class="member">
   <img class="m-photo" src="{{ placeholder }}" alt="Sophia Lee">
   <div class="m-info">
@@ -81,13 +104,22 @@ layout: archive
   </div>
 </div>
 
-<!-- ===================== UNDERGRADUATES (add later) ===================== -->
-<div class="group-section">
-  <h2>Undergraduate Researchers</h2>
-  <ul class="undergrad-list">
-    <li>Shenglan Xu</li>
-    <li>Zhou Zhuang</li>
-    <li>Shunbing Yang</li>
-    <li>Sean Brooks</li>
-  </ul>
+<!-- ===================== RESEARCH ASSISTANTS (photos + names later) ===================== -->
+<h2>Research Assistants</h2>
+<div class="ra-grid">
+  <div class="ra-card"><img class="ra-photo" src="{{ cat1 }}" alt="Research assistant"><div class="ra-name">Name</div></div>
+  <div class="ra-card"><img class="ra-photo" src="{{ cat2 }}" alt="Research assistant"><div class="ra-name">Name</div></div>
+  <div class="ra-card"><img class="ra-photo" src="{{ cat3 }}" alt="Research assistant"><div class="ra-name">Name</div></div>
+  <div class="ra-card"><img class="ra-photo" src="{{ cat4 }}" alt="Research assistant"><div class="ra-name">Name</div></div>
+  <div class="ra-card"><img class="ra-photo" src="{{ cat5 }}" alt="Research assistant"><div class="ra-name">Name</div></div>
+  <div class="ra-card"><img class="ra-photo" src="{{ cat6 }}" alt="Research assistant"><div class="ra-name">Name</div></div>
 </div>
+
+<!-- ===================== UNDERGRADUATES ===================== -->
+<h2>Undergraduate Researchers</h2>
+<ul class="undergrad-list">
+  <li>Shenglan Xu</li>
+  <li>Zhou Zhuang</li>
+  <li>Shunbing Yang</li>
+  <li>Sean Brooks</li>
+</ul>
