@@ -5,16 +5,15 @@ author_profile: true
 layout: archive
 ---
 {% comment %}
-  This page builds the publication list automatically from the files in
-  _publications/. You do NOT edit this page to add a paper — you add a small
-  file in _publications/ (copy the TEMPLATE there). This page reads these
-  fields from each paper:
-      date       -> controls the order (newest first) and the year heading
-      title      -> bold heading, links to the paper's own page
-      citation   -> the formatted reference line
-      tocfigure  -> (optional) image file in images/publications/  -> thumbnail
-      paperurl   -> (optional) link to a PDF                        -> "PDF" button
-      doiurl     -> (optional) DOI or journal link                 -> "DOI" button
+  Builds the publication list from the files in _publications/ (newest first).
+  Reads these fields from each paper (all optional except date/title/citation):
+    date       -> ordering + year heading
+    title      -> heading, links to the paper's own page
+    citation   -> the reference line
+    tocfigure  -> image file in images/publications/  -> thumbnail
+    paperurl   -> a hosted PDF (/files/..)  -> "PDF" button
+                  OR a doi.org link         -> treated as the DOI button
+    doiurl     -> explicit DOI / journal link -> "DOI" button
 {% endcomment %}
 
 <style>
@@ -41,10 +40,12 @@ layout: archive
   .pub-btn {
     display: inline-block; font-size: 0.8em; font-weight: 600;
     padding: 0.3em 0.85em; border-radius: 4px; text-decoration: none;
-    background: #2a7ae2; color: #fff;
+    background: #198754; color: #fff;            /* PDF = solid green */
   }
   .pub-btn:hover { opacity: 0.88; }
-  .pub-btn--ghost { background: transparent; color: #2a7ae2; border: 1px solid #2a7ae2; }
+  .pub-btn--ghost {                               /* DOI = blue outline */
+    background: transparent; color: #2a7ae2; border: 1px solid #2a7ae2;
+  }
   @media (max-width: 600px) {
     .pub-item { flex-direction: column; }
     .pub-thumb { flex-basis: auto; }
@@ -76,13 +77,20 @@ layout: archive
       {% elsif post.venue %}
         <div class="pub-cite"><em>{{ post.venue }}</em>, {{ yr }}</div>
       {% endif %}
+
+      {% comment %} ---- buttons ---- {% endcomment %}
+      {% assign pdf = post.paperurl %}
+      {% assign pdf_is_doi = false %}
+      {% if pdf and pdf contains 'doi.org' %}{% assign pdf_is_doi = true %}{% endif %}
       <div class="pub-links">
-        {% if post.paperurl %}
-          {% if post.paperurl contains '://' %}{% assign pdf = post.paperurl %}{% else %}{% assign pdf = post.paperurl | relative_url %}{% endif %}
-          <a class="pub-btn" href="{{ pdf }}" download>&#8595; PDF</a>
+        {% if pdf and pdf_is_doi == false %}
+          {% if pdf contains '://' %}{% assign pdfhref = pdf %}{% else %}{% assign pdfhref = pdf | relative_url %}{% endif %}
+          <a class="pub-btn" href="{{ pdfhref }}" download>&#8595; PDF</a>
         {% endif %}
         {% if post.doiurl %}
           <a class="pub-btn pub-btn--ghost" href="{{ post.doiurl }}" target="_blank" rel="noopener">DOI</a>
+        {% elsif pdf_is_doi %}
+          <a class="pub-btn pub-btn--ghost" href="{{ pdf }}" target="_blank" rel="noopener">DOI</a>
         {% endif %}
       </div>
     </div>
