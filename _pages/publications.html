@@ -1,36 +1,91 @@
 ---
-layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: true
+layout: archive
 ---
+{% comment %}
+  This page builds the publication list automatically from the files in
+  _publications/. You do NOT edit this page to add a paper — you add a small
+  file in _publications/ (copy the TEMPLATE there). This page reads these
+  fields from each paper:
+      date       -> controls the order (newest first) and the year heading
+      title      -> bold heading, links to the paper's own page
+      citation   -> the formatted reference line
+      tocfigure  -> (optional) image file in images/publications/  -> thumbnail
+      paperurl   -> (optional) link to a PDF                        -> "PDF" button
+      doiurl     -> (optional) DOI or journal link                 -> "DOI" button
+{% endcomment %}
 
-{% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
-{% endif %}
+<style>
+  .pub-list { margin-top: 0.5em; }
+  .pub-year {
+    border-bottom: 2px solid #eaeaea; padding-bottom: 0.2em;
+    margin: 1.5em 0 0.7em; font-size: 1.3em;
+  }
+  .pub-item {
+    display: flex; gap: 1.1em; align-items: flex-start;
+    padding: 0.9em 0; border-bottom: 1px solid #f0f0f0;
+  }
+  .pub-thumb { flex: 0 0 150px; }
+  .pub-thumb img {
+    width: 150px; height: 105px; object-fit: contain;
+    background: #fafafa; border: 1px solid #eee; border-radius: 4px;
+  }
+  .pub-body { flex: 1; min-width: 0; }
+  .pub-title { font-weight: 700; line-height: 1.3; }
+  .pub-title a { color: inherit; text-decoration: none; }
+  .pub-title a:hover { text-decoration: underline; }
+  .pub-cite { font-size: 0.9em; color: #555; margin: 0.25em 0 0.55em; }
+  .pub-links { display: flex; gap: 0.5em; flex-wrap: wrap; }
+  .pub-btn {
+    display: inline-block; font-size: 0.8em; font-weight: 600;
+    padding: 0.3em 0.85em; border-radius: 4px; text-decoration: none;
+    background: #2a7ae2; color: #fff;
+  }
+  .pub-btn:hover { opacity: 0.88; }
+  .pub-btn--ghost { background: transparent; color: #2a7ae2; border: 1px solid #2a7ae2; }
+  @media (max-width: 600px) {
+    .pub-item { flex-direction: column; }
+    .pub-thumb { flex-basis: auto; }
+    .pub-thumb img { width: 100%; height: auto; max-height: 170px; }
+  }
+</style>
 
-{% include base_path %}
+{% assign pubs = site.publications | sort: 'date' | reverse %}
+{% assign last_year = "" %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
+<div class="pub-list">
+{% for post in pubs %}
+  {% assign yr = post.date | date: "%Y" %}
+  {% if yr != last_year %}
+    <h2 class="pub-year">{{ yr }}</h2>
+    {% assign last_year = yr %}
+  {% endif %}
+
+  <div class="pub-item">
+    {% if post.tocfigure %}
+      <div class="pub-thumb">
+        <img src="{{ '/images/publications/' | append: post.tocfigure | relative_url }}" alt="Graphical abstract for {{ post.title | escape }}">
+      </div>
+    {% endif %}
+    <div class="pub-body">
+      <div class="pub-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
+      {% if post.citation %}
+        <div class="pub-cite">{{ post.citation }}</div>
+      {% elsif post.venue %}
+        <div class="pub-cite"><em>{{ post.venue }}</em>, {{ yr }}</div>
       {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
-
-
-
+      <div class="pub-links">
+        {% if post.paperurl %}
+          {% if post.paperurl contains '://' %}{% assign pdf = post.paperurl %}{% else %}{% assign pdf = post.paperurl | relative_url %}{% endif %}
+          <a class="pub-btn" href="{{ pdf }}" download>&#8595; PDF</a>
+        {% endif %}
+        {% if post.doiurl %}
+          <a class="pub-btn pub-btn--ghost" href="{{ post.doiurl }}" target="_blank" rel="noopener">DOI</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
