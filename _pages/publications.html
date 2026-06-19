@@ -10,7 +10,7 @@ layout: archive
     date       -> ordering + year heading
     title      -> heading, links to the paper's own page
     citation   -> the reference line
-    tocfigure  -> image file in images/publications/  -> thumbnail
+    tocfigure  -> image file in images/publications/  -> figure shown BELOW the item
     paperurl   -> a hosted PDF (/files/..)  -> "PDF" button
                   OR a doi.org link         -> treated as the DOI button
     doiurl     -> explicit DOI / journal link -> "DOI" button
@@ -22,16 +22,7 @@ layout: archive
     border-bottom: 2px solid #eaeaea; padding-bottom: 0.2em;
     margin: 1.5em 0 0.7em; font-size: 1.3em;
   }
-  .pub-item {
-    display: flex; gap: 1.1em; align-items: flex-start;
-    padding: 0.9em 0; border-bottom: 1px solid #f0f0f0;
-  }
-  .pub-thumb { flex: 0 0 150px; }
-  .pub-thumb img {
-    width: 150px; height: 105px; object-fit: contain;
-    background: #fafafa; border: 1px solid #eee; border-radius: 4px;
-  }
-  .pub-body { flex: 1; min-width: 0; }
+  .pub-item { padding: 1em 0; border-bottom: 1px solid #f0f0f0; }
   .pub-title { font-weight: 700; line-height: 1.3; }
   .pub-title a { color: inherit; text-decoration: none; }
   .pub-title a:hover { text-decoration: underline; }
@@ -46,10 +37,11 @@ layout: archive
   .pub-btn--ghost {                               /* DOI = blue outline */
     background: transparent; color: #2a7ae2; border: 1px solid #2a7ae2;
   }
-  @media (max-width: 600px) {
-    .pub-item { flex-direction: column; }
-    .pub-thumb { flex-basis: auto; }
-    .pub-thumb img { width: 100%; height: auto; max-height: 170px; }
+  /* TOC figure: shown below the item, large enough to read */
+  .pub-figure { margin-top: 0.85em; }
+  .pub-figure img {
+    display: block; width: 560px; max-width: 100%; height: auto;
+    border: 1px solid #eee; border-radius: 6px; background: #fafafa;
   }
 </style>
 
@@ -65,11 +57,6 @@ layout: archive
   {% endif %}
 
   <div class="pub-item">
-    {% if post.tocfigure %}
-      <div class="pub-thumb">
-        <img src="{{ '/images/publications/' | append: post.tocfigure | relative_url }}" alt="Graphical abstract for {{ post.title | escape }}">
-      </div>
-    {% endif %}
     <div class="pub-body">
       <div class="pub-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></div>
       {% if post.citation %}
@@ -94,6 +81,13 @@ layout: archive
         {% endif %}
       </div>
     </div>
+
+    {% comment %} ---- TOC figure, below the item ---- {% endcomment %}
+    {% if post.tocfigure %}
+      <div class="pub-figure">
+        <img src="{{ '/images/publications/' | append: post.tocfigure | relative_url }}" alt="Graphical abstract for {{ post.title | escape }}">
+      </div>
+    {% endif %}
   </div>
 {% endfor %}
 </div>
