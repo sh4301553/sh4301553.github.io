@@ -5,104 +5,89 @@ author_profile: true
 layout: archive
 ---
 {% comment %}
-  This page renders automatically from _data/members.yml.
-  You do NOT need to edit this file to add or change people —
-  edit _data/members.yml instead.
+  HOW TO EDIT THIS PAGE
+  - Each person is one <div class="member"> ... </div> block.
+  - To add a real headshot: upload it to images/members/ , then change
+        src="{{ placeholder }}"
+    to  src="/images/members/their-photo.jpg"
+  - To add a person: copy a whole member block, paste it, edit the words.
+  - To add undergrads: copy member blocks under the "Undergraduate Researchers"
+    heading below.
 {% endcomment %}
 
 <style>
-  .group-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5em;
-    margin: 1em 0 2em 0;
+  .member {
+    display: flex; gap: 1.3em; align-items: flex-start;
+    padding: 1.1em 0; border-bottom: 1px solid #f0f0f0;
   }
-  .member-card { text-align: center; }
-  .member-card img {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin: 0 auto 0.6em auto;
-    display: block;
-    background: #eee;
+  .member .m-photo {
+    flex: 0 0 140px; width: 140px; height: 140px;
+    object-fit: cover; border-radius: 8px; background: #e6e6e9;
   }
-  .member-card .m-name { font-weight: 700; font-size: 1.05em; }
-  .member-card .m-role { color: #777; font-size: 0.9em; margin-bottom: 0.3em; }
-  .member-card .m-interests { font-size: 0.85em; }
-  .member-card .m-links a { margin: 0 0.35em; font-size: 0.85em; }
-  .pi-card {
-    display: flex; gap: 1.5em; align-items: flex-start;
-    flex-wrap: wrap; margin-bottom: 1.5em;
-  }
-  .pi-card img {
-    width: 180px; height: 180px; object-fit: cover;
-    border-radius: 8px; background: #eee;
-  }
-  .pi-card .pi-info { flex: 1; min-width: 240px; }
-  .alumni-list li { margin-bottom: 0.4em; }
-  @media (max-width: 480px) {
-    .member-card img { width: 130px; height: 130px; }
+  .member .m-info { flex: 1; min-width: 0; }
+  .member .m-name { font-weight: 700; font-size: 1.12em; line-height: 1.2; }
+  .member .m-role { color: #777; font-size: 0.9em; margin: 0.1em 0 0.5em; }
+  .member .m-bio { font-size: 0.95em; margin: 0; }
+  .member .m-links { margin-top: 0.4em; font-size: 0.85em; }
+  .member .m-links a { margin-right: 0.8em; }
+  .group-section { margin-top: 1.6em; }
+  .group-note { color: #777; font-style: italic; }
+  .undergrad-list { margin: 0.4em 0 0; }
+  .undergrad-list li { margin-bottom: 0.35em; }
+  @media (max-width: 520px) {
+    .member { flex-direction: column; }
+    .member .m-photo { width: 130px; height: 130px; flex-basis: auto; }
   }
 </style>
 
-{% assign placeholder = '/images/members/placeholder.jpg' | relative_url %}
+{% comment %} A built-in gray silhouette used until a real headshot is added. {% endcomment %}
+{% capture placeholder %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Crect width='140' height='140' rx='8' fill='%23e6e6e9'/%3E%3Ccircle cx='70' cy='54' r='27' fill='%23bfbfc6'/%3E%3Cpath d='M28 128 a42 42 0 0 1 84 0 Z' fill='%23bfbfc6'/%3E%3C/svg%3E{% endcapture %}
 
-{% comment %} ---------- PRINCIPAL INVESTIGATOR ---------- {% endcomment %}
-{% if site.data.members.pi %}
-  {% for person in site.data.members.pi %}
-  <div class="pi-card">
-    {% if person.photo %}
-      <img src="{{ '/images/members/' | append: person.photo | relative_url }}" alt="{{ person.name }}">
-    {% else %}
-      <img src="{{ placeholder }}" alt="{{ person.name }}">
-    {% endif %}
-    <div class="pi-info">
-      <h2 style="margin-top:0">{{ person.name }}</h2>
-      <p class="m-role"><strong>{{ person.role }}</strong></p>
-      {% if person.bio %}<p>{{ person.bio }}</p>{% endif %}
-      {% if person.email %}<p>📧 <a href="mailto:{{ person.email }}">{{ person.email }}</a></p>{% endif %}
-      {% if person.links %}
-        <p class="m-links">
-          {% for l in person.links %}<a href="{{ l.url }}">{{ l.label }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}
-        </p>
-      {% endif %}
-    </div>
+<!-- ===================== POSTDOC / RESEARCHERS ===================== -->
+<div class="member">
+  <img class="m-photo" src="{{ placeholder }}" alt="Aihua Wang">
+  <div class="m-info">
+    <div class="m-name">Dr. Aihua Wang</div>
+    <div class="m-role">Postdoctoral Researcher</div>
+    <p class="m-bio">Brief introduction goes here — research focus and background. (Edit this line.)</p>
   </div>
-  {% endfor %}
-{% endif %}
-
-{% comment %} ---------- CURRENT MEMBERS ---------- {% endcomment %}
-{% if site.data.members.current and site.data.members.current.size > 0 %}
-<h2>Current Members</h2>
-<div class="group-grid">
-  {% for person in site.data.members.current %}
-  <div class="member-card">
-    {% if person.photo %}
-      <img src="{{ '/images/members/' | append: person.photo | relative_url }}" alt="{{ person.name }}">
-    {% else %}
-      <img src="{{ placeholder }}" alt="{{ person.name }}">
-    {% endif %}
-    <div class="m-name">{{ person.name }}</div>
-    <div class="m-role">{{ person.role }}</div>
-    {% if person.interests %}<div class="m-interests">{{ person.interests }}</div>{% endif %}
-    <div class="m-links">
-      {% if person.email %}<a href="mailto:{{ person.email }}">Email</a>{% endif %}
-      {% if person.links %}{% for l in person.links %}<a href="{{ l.url }}">{{ l.label }}</a>{% endfor %}{% endif %}
-    </div>
-  </div>
-  {% endfor %}
 </div>
-{% endif %}
 
-{% comment %} ---------- ALUMNI ---------- {% endcomment %}
-{% if site.data.members.alumni and site.data.members.alumni.size > 0 %}
-<h2>Alumni</h2>
-<ul class="alumni-list">
-  {% for person in site.data.members.alumni %}
-  <li>
-    <strong>{{ person.name }}</strong>{% if person.role %} — {{ person.role }}{% endif %}{% if person.current_position %}. <em>{{ person.current_position }}</em>{% endif %}
-  </li>
-  {% endfor %}
-</ul>
-{% endif %}
+<!-- ===================== GRADUATE STUDENTS ===================== -->
+<div class="member">
+  <img class="m-photo" src="{{ placeholder }}" alt="Sophia Lee">
+  <div class="m-info">
+    <div class="m-name">Sophia Lee</div>
+    <div class="m-role">PhD Student</div>
+    <p class="m-bio">Brief introduction goes here — research focus and background. (Edit this line.)</p>
+  </div>
+</div>
+
+<div class="member">
+  <img class="m-photo" src="{{ placeholder }}" alt="Qiuyue Yan">
+  <div class="m-info">
+    <div class="m-name">Qiuyue Yan</div>
+    <div class="m-role">PhD Student</div>
+    <p class="m-bio">Brief introduction goes here — research focus and background. (Edit this line.)</p>
+  </div>
+</div>
+
+<div class="member">
+  <img class="m-photo" src="{{ placeholder }}" alt="Calleigh Keeley">
+  <div class="m-info">
+    <div class="m-name">Calleigh Keeley</div>
+    <div class="m-role">Master's Student</div>
+    <p class="m-bio">Brief introduction goes here — research focus and background. (Edit this line.)</p>
+  </div>
+</div>
+
+<!-- ===================== UNDERGRADUATES (add later) ===================== -->
+<div class="group-section">
+  <h2>Undergraduate Researchers</h2>
+  <ul class="undergrad-list">
+    <li>Shenglan Xu</li>
+    <li>Zhou Zhuang</li>
+    <li>Shunbing Yang</li>
+    <li>Sean Brooks</li>
+  </ul>
+</div>
