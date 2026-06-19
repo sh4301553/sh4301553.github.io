@@ -48,4 +48,4 @@ including total organic halogen (TOX) analysis.
 
 ## Contact
 
-📧 [shilai@vt.edu](mailto:shilai@vt.edu) &nbsp;·&nbsp; 328 Smyth Hall, 185 Ag Quad Lane, Blacksburg, VA 24061
+📧 [shilai@vt.edu](mailto:shilai@vt.edu) &nbsp;·&nbsp; 1880 Pratt Dr, Room 1120B, Blacksburg, VA 24061
