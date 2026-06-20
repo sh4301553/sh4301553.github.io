@@ -15,10 +15,9 @@ that sounds like you, please read below and get in touch.
 
 ## Who I'm looking for
 
-- **PhD students** — [e.g., "I am recruiting 1–2 PhD students to start in Fall 2026."
-  If you're not currently recruiting, say so here so students know.]
-- **Master's students** — [thesis and non-thesis students interested in PFAS
-  treatment, environmental analysis, or resource recovery.]
+- **PhD students** — [Currently, there are no PhD student positions open due to the funding limit.]
+- **Master's students** — [Non-thesis students interested in PFAS
+  treatment, environmental analysis, or resource recovery are welcome to reach out]
 - **Undergraduate researchers** — [Virginia Tech undergraduates looking for
   hands-on research experience are welcome to reach out year-round.]
 - **Postdoctoral researchers** — [I'm happy to support strong candidates on
