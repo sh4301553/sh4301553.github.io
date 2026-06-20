@@ -5,44 +5,61 @@ author_profile: true
 layout: archive
 ---
 {% comment %}
-  This page renders automatically from _data/facilities.yml.
-  To add or change equipment, edit _data/facilities.yml — not this file.
+  HOW TO EDIT THIS PAGE
+  - Items are grouped into sections (each <h2> + a <div class="fac-grid">).
+  - Each item is one <div class="fac-card"> block (photo on top, name below),
+    shown three per row.
+  - To add a real photo: upload it to images/facilities/ , then change that
+    item's   src="{{ equip }}"   to   src="/images/facilities/your-photo.jpg"
+  - To add an item: copy a whole <div class="fac-card"> ... </div> block into
+    the section you want.
+  - To add a short description under a name, add a line like:
+        <div class="fac-desc">What it is used for.</div>
+  - To add a new section: copy an <h2> + <div class="fac-grid"> ... </div> block.
 {% endcomment %}
 
 <style>
-  .facility {
-    display: flex; gap: 1.5em; align-items: flex-start;
-    flex-wrap: wrap; margin: 0 0 2em 0;
-    padding-bottom: 1.5em; border-bottom: 1px solid #eee;
+  h2 { margin-top: 1.6em; }
+  .fac-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.3em; margin-top: 0.7em;
   }
-  .facility img {
-    width: 320px; max-width: 100%; height: auto;
-    border-radius: 8px; object-fit: cover; background: #eee;
+  .fac-card .fac-photo {
+    width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+    border-radius: 8px; background: #eef0f3; border: 1px solid #eee;
+    display: block; margin-bottom: 0.5em;
   }
-  .facility .f-info { flex: 1; min-width: 260px; }
-  .facility h2 { margin-top: 0; }
-  .facility .f-loc { color: #777; font-size: 0.9em; }
-  .facility ul { margin-top: 0.5em; }
+  .fac-card .fac-name { font-weight: 700; font-size: 1em; line-height: 1.25; }
+  .fac-card .fac-desc { font-size: 0.85em; color: #666; margin-top: 0.2em; }
+  @media (max-width: 600px) { .fac-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 380px) { .fac-grid { grid-template-columns: 1fr; } }
 </style>
 
-{% if site.data.facilities.facilities and site.data.facilities.facilities.size > 0 %}
-  {% for f in site.data.facilities.facilities %}
-  <div class="facility">
-    {% if f.photo %}
-      <img src="{{ '/images/facilities/' | append: f.photo | relative_url }}" alt="{{ f.name }}">
-    {% endif %}
-    <div class="f-info">
-      <h2>{{ f.name }}</h2>
-      {% if f.location %}<p class="f-loc">📍 {{ f.location }}</p>{% endif %}
-      {% if f.description %}<p>{{ f.description }}</p>{% endif %}
-      {% if f.specs %}
-      <ul>
-        {% for s in f.specs %}<li>{{ s }}</li>{% endfor %}
-      </ul>
-      {% endif %}
-    </div>
-  </div>
-  {% endfor %}
-{% else %}
-  <p>Facilities will be listed here soon.</p>
-{% endif %}
+<p>Instrumentation and equipment available in the group.</p>
+
+{% comment %} Neutral instrument placeholder, used until a real photo is added. {% endcomment %}
+{% capture equip %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'%3E%3Crect width='160' height='120' fill='%23eef0f3'/%3E%3Crect x='44' y='40' width='72' height='52' rx='6' fill='%23cfd4da'/%3E%3Crect x='52' y='48' width='36' height='24' rx='2' fill='%23aeb6bf'/%3E%3Ccircle cx='104' cy='54' r='5' fill='%23aeb6bf'/%3E%3Ccircle cx='104' cy='70' r='5' fill='%23aeb6bf'/%3E%3Crect x='60' y='92' width='40' height='6' rx='3' fill='%23cfd4da'/%3E%3C/svg%3E{% endcapture %}
+
+<!-- ===================== ANALYTICAL INSTRUMENTS ===================== -->
+<h2>Analytical Instruments</h2>
+<div class="fac-grid">
+  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Agilent LC-MS/MS"><div class="fac-name">Agilent LC-MS/MS</div></div>
+  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Shimadzu LC-MS/MS"><div class="fac-name">Shimadzu LC-MS/MS</div></div>
+  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Agilent GC-MS"><div class="fac-name">Agilent GC-MS</div></div>
+  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Agilent HPLC-DAD"><div class="fac-name">Agilent HPLC-DAD</div></div>
+  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Metrohm IC"><div class="fac-name">Metrohm IC</div></div>
+</div>
+
+<!-- ===================== SAMPLE PREPARATION ===================== -->
+<h2>Sample Preparation</h2>
+<div class="fac-grid">
+  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Automated SPE"><div class="fac-name">Automated SPE</div></div>
+  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Freeze-dryer"><div class="fac-name">Freeze-dryer</div></div>
+</div>
+
+<!-- ===================== REACTORS & THERMAL PROCESSING ===================== -->
+<h2>Reactors &amp; Thermal Processing</h2>
+<div class="fac-grid">
+  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Parr hydrothermal reactor"><div class="fac-name">Parr hydrothermal reactor</div></div>
+  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Muffle furnace"><div class="fac-name">Muffle furnace</div></div>
+</div>
