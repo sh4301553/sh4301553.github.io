@@ -1,17 +1,15 @@
 # =============================================================================
 # TOP NAVIGATION MENU
-# =============================================================================
-# Controls the links across the top of every page.
-# Order here = order shown on the site.
-#
-# To rename a tab, change "title".
-# To hide a tab, put a "#" at the start of its two lines (or delete them).
-# "url" must match the "permalink" set in the matching page in _pages/.
+# Order here = order shown on the site. To rename a tab, change "title".
+# To hide a tab, delete its two lines (or put a "#" at the start of each).
 # =============================================================================
 
 main:
   - title: "Home"
     url: /
+
+  - title: "Research"
+    url: /research/
 
   - title: "Publications"
     url: /publications/
@@ -28,5 +26,9 @@ main:
   - title: "News"
     url: /news/
 
+  - title: "Join Us"
+    url: /join/
+
   - title: "CV"
     url: /cv/
+
