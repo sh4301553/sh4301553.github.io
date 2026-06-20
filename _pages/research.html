@@ -1,0 +1,71 @@
+---
+title: "Research"
+permalink: /research/
+author_profile: true
+layout: archive
+---
+{% comment %}
+  Plain-language overview of the group's research. Each theme has an optional
+  figure: until you add one, a neutral placeholder shows (no broken images).
+  To add a real figure (e.g., a graphical abstract):
+    1. Upload it to images/research/  (create the folder if needed)
+    2. Change that theme's   src="{{ placeholder }}"   to
+       src="/images/research/your-figure.jpg"
+{% endcomment %}
+
+<style>
+  .rsec { display: flex; gap: 1.4em; align-items: flex-start; flex-wrap: wrap;
+          margin: 0 0 1.8em; padding-bottom: 1.4em; border-bottom: 1px solid #f0f0f0; }
+  .rsec img { width: 280px; max-width: 100%; height: auto; border-radius: 8px;
+              border: 1px solid #eee; background: #fafafa; }
+  .rsec .rtext { flex: 1; min-width: 260px; }
+  .rsec h2 { margin-top: 0; }
+  @media (max-width: 560px){ .rsec img { width: 100%; } }
+</style>
+
+{% capture placeholder %}data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 180'%3E%3Crect width='280' height='180' fill='%23eef0f3'/%3E%3Ccircle cx='140' cy='80' r='34' fill='none' stroke='%23b8c0c8' stroke-width='6'/%3E%3Cline x1='164' y1='104' x2='196' y2='136' stroke='%23b8c0c8' stroke-width='6'/%3E%3Ctext x='140' y='160' font-family='sans-serif' font-size='13' fill='%2399a3ad' text-anchor='middle'%3Efigure%3C/text%3E%3C/svg%3E{% endcapture %}
+
+<p>Our group works at the intersection of environmental chemistry and engineering,
+turning fundamental understanding of pollutants into practical, affordable
+technologies that protect water resources and public health. Three themes drive
+our work.</p>
+
+<div class="rsec">
+  <img src="{{ placeholder }}" alt="Emerging contaminants research figure">
+  <div class="rtext">
+    <h2>Destroying Emerging Contaminants</h2>
+    <p>PFAS — the "forever chemicals" — resist almost everything we throw at them,
+    which is exactly why they accumulate in our water and bodies. We develop
+    methods that don't just move these pollutants around but actually break them
+    apart, cleaving the tough carbon–fluorine bonds at their core. Our hydrothermal
+    alkaline treatment (HALT) work has shown that even the most persistent PFAS can
+    be fully destroyed, and the approach is now being scaled for real-world site
+    cleanups.</p>
+  </div>
+</div>
+
+<div class="rsec">
+  <img src="{{ placeholder }}" alt="Resource recovery research figure">
+  <div class="rtext">
+    <h2>Recovering Value from Waste</h2>
+    <p>"Waste" is often a resource in the wrong place. We design processes to
+    recover valuable materials — including lithium and rare earth elements — from
+    end-of-life sources such as spent lithium-ion batteries and solar panels.
+    The goal is a cleaner, more circular materials economy that reduces both
+    pollution and the demand for new mining.</p>
+  </div>
+</div>
+
+<div class="rsec">
+  <img src="{{ placeholder }}" alt="Analytical chemistry research figure">
+  <div class="rtext">
+    <h2>Seeing the Invisible: Environmental Analytical Chemistry</h2>
+    <p>You can't manage what you can't measure. Many emerging contaminants exist at
+    vanishingly low levels and slip past conventional methods. We build and refine
+    analytical approaches — from smarter sample preparation to total organic
+    halogen (TOX) analysis and high-resolution mass spectrometry — so that
+    contaminants can be detected, identified, and tracked accurately.</p>
+  </div>
+</div>
+
+<p>Interested in working on these problems? See <a href="{{ '/join/' | relative_url }}">Join the Lab</a>.</p>
