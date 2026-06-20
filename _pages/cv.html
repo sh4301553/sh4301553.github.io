@@ -1,0 +1,39 @@
+---
+title: "CV"
+permalink: /cv/
+author_profile: true
+layout: archive
+---
+{% comment %}
+  View-only CV. The pages are shown as images from images/cv/ — there is no
+  PDF file linked anywhere, so visitors can read it but can't download the file.
+
+  TO UPDATE THE CV LATER:
+  - Replace the images in images/cv/ with new ones named cv-01.jpg, cv-02.jpg, ...
+    (keep the zero-padded cv-NN.jpg naming so they stay in order).
+  - This page lists them automatically — no need to edit it, even if the number
+    of pages changes.
+{% endcomment %}
+
+<style>
+  .cv-wrap { max-width: 860px; margin: 0 auto; }
+  .cv-page {
+    width: 100%; height: auto; display: block;
+    margin: 0 auto 1.1em auto;
+    border: 1px solid #e2e2e2; border-radius: 2px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    -webkit-user-drag: none; user-select: none;
+  }
+</style>
+
+{% assign cvpages = site.static_files | where_exp: "f", "f.path contains '/images/cv/cv-'" | sort: "path" %}
+
+<div class="cv-wrap">
+  {% if cvpages.size > 0 %}
+    {% for f in cvpages %}
+      <img class="cv-page" src="{{ f.path | relative_url }}" alt="Curriculum vitae, page {{ forloop.index }}" loading="lazy">
+    {% endfor %}
+  {% else %}
+    <p>CV will be posted here soon.</p>
+  {% endif %}
+</div>
