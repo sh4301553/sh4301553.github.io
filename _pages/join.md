@@ -56,7 +56,7 @@ Email me at **[shilai@vt.edu](mailto:shilai@vt.edu)** with:
 
 Prospective graduate students should also apply through the
 [School of Plant and Environmental Sciences graduate program](https://spes.vt.edu/).
-[Add the direct application link and any deadlines here.]
+https://applyto.graduateschool.vt.edu/apply/
 
-I read every message and try to reply, even when I'm not able to take on someone
-new. Thank you for your interest.
+Due to the high volume of student inquiries, I may not be able to respond immediately. Please feel free to send a follow-up reminder if you have not heard back from me. Thank you for your interest and understanding.
+
