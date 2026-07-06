@@ -9,8 +9,10 @@ layout: archive
   - Items are grouped into sections (each <h2> + a <div class="fac-grid">).
   - Each item is one <div class="fac-card"> block (photo on top, name below),
     shown three per row.
-  - To add a real photo: upload it to images/facilities/ , then change that
-    item's   src="{{ equip }}"   to   src="/images/facilities/your-photo.jpg"
+  - To use a real photo: upload it to images/facilities/ , then set that
+    item's   src="/images/facilities/your-photo.jpg"
+  - If a photo isn't ready yet, set that card's src back to  "{{ equip }}"
+    to show the neutral gray placeholder.
   - To add an item: copy a whole <div class="fac-card"> ... </div> block into
     the section you want.
   - To add a short description under a name, add a line like:
@@ -46,25 +48,25 @@ layout: archive
 <!-- ===================== ANALYTICAL INSTRUMENTS ===================== -->
 <h2>Analytical Instruments</h2>
 <div class="fac-grid">
-  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Agilent LC-MS/MS"><div class="fac-name">Agilent LC-MS/MS</div></div>
-  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Shimadzu LC-MS/MS"><div class="fac-name">Shimadzu LC-MS/MS</div></div>
-  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Agilent GC-MS"><div class="fac-name">Agilent GC-MS</div></div>
-  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Agilent HPLC-DAD"><div class="fac-name">Agilent HPLC-DAD</div></div>
-  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Metrohm IC"><div class="fac-name">Metrohm IC</div></div>
+  <div class="fac-card"><img class="fac-photo" src="/images/facilities/agilent-lcmsms.jpg" alt="Agilent LC-MS/MS"><div class="fac-name">Agilent LC-MS/MS</div><div class="fac-desc">Trace-level quantification of polar organic contaminants such as PFAS.</div></div>
+  <div class="fac-card"><img class="fac-photo" src="/images/facilities/shimadzu-lcmsms.jpg" alt="Shimadzu LC-MS/MS"><div class="fac-name">Shimadzu LC-MS/MS</div><div class="fac-desc">High-throughput targeted analysis of emerging contaminants in complex matrices.</div></div>
+  <div class="fac-card"><img class="fac-photo" src="/images/facilities/agilent-gcms.jpg" alt="Agilent GC-MS"><div class="fac-name">Agilent GC-MS</div><div class="fac-desc">Identification and quantification of volatile and semi-volatile organics.</div></div>
+  <div class="fac-card"><img class="fac-photo" src="/images/facilities/agilent-hplc-dad.jpg" alt="Agilent HPLC-DAD"><div class="fac-name">Agilent HPLC-DAD</div><div class="fac-desc">Separation and quantification of UV-absorbing compounds.</div></div>
+  <div class="fac-card"><img class="fac-photo" src="/images/facilities/metrohm-ic.jpg" alt="Metrohm IC"><div class="fac-name">Metrohm IC</div><div class="fac-desc">Measurement of anions and cations, including fluoride and sulfate.</div></div>
 </div>
 
 <!-- ===================== SAMPLE PREPARATION ===================== -->
 <h2>Sample Preparation</h2>
 <div class="fac-grid">
-  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Automated SPE"><div class="fac-name">Automated SPE</div></div>
-  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Freeze-dryer"><div class="fac-name">Freeze-dryer</div></div>
+  <div class="fac-card"><img class="fac-photo" src="/images/facilities/automated-spe.jpg" alt="Automated SPE"><div class="fac-name">Automated SPE</div><div class="fac-desc">Automated solid-phase extraction to concentrate trace analytes from water samples.</div></div>
+  <div class="fac-card"><img class="fac-photo" src="/images/facilities/freeze-dryer.jpg" alt="Freeze-dryer"><div class="fac-name">Freeze-dryer</div><div class="fac-desc">Gentle water removal to preserve and concentrate samples before analysis.</div></div>
 </div>
 
 <!-- ===================== REACTORS & THERMAL PROCESSING ===================== -->
 <h2>Reactors &amp; Thermal Processing</h2>
 <div class="fac-grid">
-  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Parr hydrothermal reactor"><div class="fac-name">Parr hydrothermal reactor</div></div>
-  <div class="fac-card"><img class="fac-photo" src="{{ equip }}" alt="Muffle furnace"><div class="fac-name">Muffle furnace</div></div>
+  <div class="fac-card"><img class="fac-photo" src="/images/facilities/parr-reactor.jpg" alt="Parr hydrothermal reactor"><div class="fac-name">Parr hydrothermal reactor</div><div class="fac-desc">High-temperature, high-pressure reactor for hydrothermal PFAS destruction experiments.</div></div>
+  <div class="fac-card"><img class="fac-photo" src="/images/facilities/muffle-furnace.jpg" alt="Muffle furnace"><div class="fac-name">Muffle furnace</div><div class="fac-desc">High-temperature furnace for ashing, calcination, and thermal treatment of solids.</div></div>
 </div>
 
 <!-- ===================== SAMPLE THROUGHPUT ===================== -->
